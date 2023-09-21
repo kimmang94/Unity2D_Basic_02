@@ -1,18 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletLauncher : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private IGameController controller;
+
+    public void SetGameController(IGameController controller)
     {
-        
+        this.controller = controller;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (controller != null)
+        {
+            if (controller.FireButtonPressed())
+            {
+                Debug.Log("Fired a bullt");
+            }
+        }
+        else
+        {
+            Debug.LogError("Controller is Null");
+        }
+
     }
 }
